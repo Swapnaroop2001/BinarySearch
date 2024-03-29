@@ -2,7 +2,7 @@
  * BinarySearch
  */
 public class BinarySearch {
-    public void name() {
+    public void BinarySearch() {
         
     }
 }
