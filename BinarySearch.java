@@ -44,9 +44,25 @@ public class BinarySearch {
                 high = mid - 1;
             }
         }
-
         if (flag1==0) return new int[]{-1,-1};
         return new int[] {first, last};
+    }
+
+    //Search Insert Position
+    public int searchInsert(int[] nums, int target) {
+        int low=0, high=nums.length-1;
+        int position=0;
+        while (low<=high) {
+            int mid=low+((high-low)/2);
+            if(target==nums[mid]) return mid;
+            else if (target> nums[mid]) {
+                position=mid+1;
+                low=mid+1;
+            }else{
+                high=mid-1;
+            }
+        }
+        return position;
     }
 
     public static void main(String[] args) {
