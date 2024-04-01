@@ -126,7 +126,8 @@ public class BinarySearch {
         return false;
     }
 
-    // 153. Minimum in Rotated Sorted Array
+    // 153. Minimum in Rotated Sorted Array.
+    //Rotation Count.
     public int findMin(int[] nums) {
         int low = 0;
         int high = nums.length - 1;
@@ -146,6 +147,25 @@ public class BinarySearch {
             }
         }
         return nums[low];
+    }
+
+    //540. Single Element in a Sorted Array
+    public int singleNonDuplicate(int[] nums) {
+        int left=0, right=nums.length-1;
+        while (left<right) {
+            int mid=left+((right-left)/2);
+            if (mid%2==1) {
+                mid--;
+            }
+
+            if (nums[mid]!=nums[mid+1]) {
+                right=mid;
+            }
+            else{
+                left=mid+2;
+            }
+        }
+        return nums[left];
     }
 
     public static void main(String[] args) {
