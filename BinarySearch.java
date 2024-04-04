@@ -233,8 +233,38 @@ public class BinarySearch {
         return 0;
     }
 
+    //875. Koko Eating Bananas
+    public int minEatingSpeed(int[] piles, int h) {
+        int low=1, high=findMaxHr(piles);
+        while (low<=high) {
+            int mid=low+((high-low)/2);
+            double sumOfHr=sum(piles, mid);
+            if (sumOfHr<h) {
+                low=mid+1;
+            } else {
+                high=mid-1;
+            }
+        }
+        return low;
+    }
+    public static int findMaxHr(int[] piles){
+        int max=Integer.MIN_VALUE;
+        for (int i = 0; i < piles.length; i++) {
+            max=Math.max(max, piles[i]);
+        }
+        return max;
+    }
+    public static double sum(int[] piles, int k){
+        double sumHr=0;
+        for (int i = 0; i < piles.length; i++) {
+            sumHr=sumHr+Math.ceil(piles[i]/k);
+        }
+        return sumHr;
+    }
 
-    
+
+
+
     public static void main(String[] args) {
         int arr[] = { 1, 2, 2, 2, 3, 3, 3, 4, 4, 5, 6 };
         System.out.println(searchRange(arr, 3));
