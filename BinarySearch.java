@@ -289,6 +289,44 @@ public class BinarySearch {
         }
         return sum;
     }
+    
+    //1011. Capacity To Ship Packages Within D Days
+    public int shipWithinDays(int[] weights, int days) {
+        int sum=0;
+        int max=Integer.MIN_VALUE;
+        for (int i = 0; i < weights.length; i++) {
+            sum=sum+weights[i];
+            if (max<weights[i]) {
+                max=weights[i];
+            }
+        }
+        int low=max, high=sum;
+        while (low<=high) {
+            int mid=low+((high-low)/2);
+            int k=helperSum(weights, mid);
+            if (k<=days) {
+               high=mid-1; 
+            }
+            else{
+                low=mid+1;
+            }
+        }
+        return low;
+    }
+    public int helperSum(int[] weights, int mid) {
+        int sum=0;
+        int counter=1;
+        for (int i = 0; i < weights.length; i++) {
+            if(sum=sum+weights[i]>mid){
+                counter++;
+                sum=weights[i];
+            }else{
+                sum=sum+weights[i]
+            }
+        }
+        return counter;
+    }
+
 
 
 
