@@ -1,3 +1,5 @@
+import java.util.Arrays;
+
 /**
  * BinarySearch
  */
@@ -340,6 +342,34 @@ public class BinarySearch {
             }
         }
         return k+high+1;
+    }
+
+    //1552. Magnetic Force Between Two Balls
+    public int maxDistance(int[] position, int m) {
+        Arrays.sort(position);
+        int low=0, high=position[position.length-1]-position[0];
+        while (low<=high) {
+            int mid=low+((high-low)/2);
+            if (checkIfPossible(position, mid, m)==true){
+                low=mid+1;
+            }
+            else{
+                high=mid-1;
+            }
+        }
+        return high;
+    }
+    public boolean checkIfPossible(int[] position,int mid, int m) {
+        int cows=1;
+        int lastCow=position[0];
+        for (int i = 0; i < position.length; i++) {
+            if (position[i]-lastCow>=mid) {
+                cows++;
+                lastCow=position[i];
+            }
+            if (cows==m) return true;
+        }
+        return false;
     }
 
 
